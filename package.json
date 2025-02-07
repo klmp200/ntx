@@ -29,6 +29,7 @@
 		"@fullcalendar/google-calendar": "^6.1.15",
 		"@fullcalendar/list": "^6.1.15",
 		"bootstrap": "^5.3.3",
-		"bootstrap-icons": "^1.11.3"
+		"bootstrap-icons": "^1.11.3",
+		"google-spreadsheet": "^4.1.4"
 	}
 }
