@@ -1,44 +1,75 @@
 <script lang="ts">
-import { Calendar } from "@fullcalendar/core/index.js";
-import { onMount } from "svelte";
-import frLocale from "@fullcalendar/core/locales/fr";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
+  import "bootstrap/dist/css/bootstrap.css";
+  import "bootstrap-icons/font/bootstrap-icons.css";
 
-let calendarContainer: HTMLDivElement;
+  import { Calendar } from "@fullcalendar/core/index.js";
+  import { onMount } from "svelte";
+  import frLocale from "@fullcalendar/core/locales/fr";
+  import dayGridPlugin from "@fullcalendar/daygrid";
+  import googleCalendarPlugin from "@fullcalendar/google-calendar";
+  import listPlugin from "@fullcalendar/list";
+  import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+  import { GoogleCalendarConfig } from "../lib/config"
 
-const isMobileView = () => window.innerWidth < 765;
-const getCurrentView = () => (isMobileView() ? "listMonth" : "dayGridMonth");
-const getCurrentToolbar = () => {
-  if (isMobileView()) {
+  let calendarContainer: HTMLDivElement;
+
+  const isMobileView = () => window.innerWidth < 765;
+  const getCurrentView = () => (isMobileView() ? "listMonth" : "dayGridMonth");
+  const getCurrentToolbar = () => {
+    if (isMobileView()) {
+      return {
+        left: "prev,next",
+        center: "title",
+        right: "",
+      };
+    }
     return {
-      left: "prev,next",
+      left: "prev,next today",
       center: "title",
-      right: "",
+      right: "dayGridMonth,dayGridWeek,dayGridDay",
     };
-  }
-  return {
-    left: "prev,next today",
-    center: "title",
-    right: "dayGridMonth,dayGridWeek,dayGridDay",
   };
-};
 
-onMount(() => {
-  const calendar = new Calendar(calendarContainer, {
-    plugins: [dayGridPlugin, listPlugin],
-    locales: [frLocale],
-    height: "auto",
-    locale: "fr",
-    initialView: getCurrentView(),
-    headerToolbar: getCurrentToolbar(),
-    windowResize: () => {
-      calendar.changeView(getCurrentView());
-      calendar.setOption("headerToolbar", getCurrentToolbar());
-    },
+  onMount(() => {
+    const calendar = new Calendar(calendarContainer, {
+      plugins: [
+        dayGridPlugin,
+        listPlugin,
+        googleCalendarPlugin,
+        bootstrap5Plugin,
+      ],
+      locales: [frLocale],
+      themeSystem: "bootstrap5",
+      height: "auto",
+      locale: "fr",
+      initialView: getCurrentView(),
+      headerToolbar: getCurrentToolbar(),
+      googleCalendarApiKey: GoogleCalendarConfig.API_KEY,
+      eventSources: [
+        {
+          googleCalendarId: GoogleCalendarConfig.CALENDARS.EVENTS,
+          color: "#0d6efd",
+        },
+        {
+          googleCalendarId: GoogleCalendarConfig.CALENDARS.LAN,
+          color: "#43b98e",
+        },
+        {
+          googleCalendarId: GoogleCalendarConfig.CALENDARS.CONVENTIONS,
+          color: "#d27d87",
+        },
+        {
+          googleCalendarId: GoogleCalendarConfig.CALENDARS.TWITCH,
+          color: "#6441a5",
+        },
+      ],
+      windowResize: () => {
+        calendar.changeView(getCurrentView());
+        calendar.setOption("headerToolbar", getCurrentToolbar());
+      },
+    });
+    calendar.render();
   });
-  calendar.render();
-});
 </script>
 
 <div bind:this={calendarContainer}></div>

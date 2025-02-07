@@ -23,9 +23,12 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@fullcalendar/bootstrap5": "^6.1.15",
 		"@fullcalendar/core": "^6.1.15",
 		"@fullcalendar/daygrid": "^6.1.15",
 		"@fullcalendar/google-calendar": "^6.1.15",
-		"@fullcalendar/list": "^6.1.15"
+		"@fullcalendar/list": "^6.1.15",
+		"bootstrap": "^5.3.3",
+		"bootstrap-icons": "^1.11.3"
 	}
 }
