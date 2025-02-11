@@ -1,7 +1,4 @@
 <script lang="ts">
-  import "bootstrap/dist/css/bootstrap.css";
-  import "bootstrap-icons/font/bootstrap-icons.css";
-
   import { Calendar } from "@fullcalendar/core/index.js";
   import { onMount } from "svelte";
   import frLocale from "@fullcalendar/core/locales/fr";

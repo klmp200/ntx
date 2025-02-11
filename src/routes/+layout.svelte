@@ -1,5 +1,7 @@
 <script lang="ts">
-	let { children } = $props();
+	import "bootstrap/dist/css/bootstrap.css";
+	import "bootstrap-icons/font/bootstrap-icons.css";
+	const { children } = $props();
 </script>
 
 <nav>

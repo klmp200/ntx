@@ -1,5 +1,5 @@
 <script lang="ts">
-import { PUBLIC_GOOGLE_SHEET_API_KEY } from "$env/static/public";
+import { PUBLIC_GOOGLE_SHEET_API_KEY, PUBLIC_GOOGLE_SHEET_LAN_SOLO } from "$env/static/public";
 import { GoogleSpreadsheet, type GoogleSpreadsheetWorksheet } from "google-spreadsheet";
 import { onMount } from "svelte";
 
@@ -9,25 +9,24 @@ type Sheet = {
 	rows: Partial<ScoreRow>[];
 }
 
-let title = "";
+let title = $state("");
+// biome-ignore lint/style/useConst: used in widget
 let activeSheet = $state(0);
 const sheets: Sheet[] = $state([]);
 
 onMount(async () => {
-  const doc = new GoogleSpreadsheet("1hMC42H-ss_utlOH4TD457p4dJkTpMLO16rOb9aubBrM", {
+  const doc = new GoogleSpreadsheet(PUBLIC_GOOGLE_SHEET_LAN_SOLO, {
     apiKey: PUBLIC_GOOGLE_SHEET_API_KEY,
   });
 
   await doc.loadInfo();
   title = doc.title;
-  const sheet = doc.sheetsByIndex[0];
   for (const sheet of doc.sheetsByIndex){
   	sheets.push({
 		  	title: sheet.title,
 		  	rows: (await sheet.getRows<ScoreRow>()).map((e) => e.toObject()),
 	  });
   }
-  console.log(doc.sheetsByIndex)
 });
 
 $inspect(sheets);
