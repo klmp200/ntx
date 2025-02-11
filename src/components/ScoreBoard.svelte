@@ -2,6 +2,7 @@
 import { PUBLIC_GOOGLE_SHEET_API_KEY, PUBLIC_GOOGLE_SHEET_LAN_SOLO } from "$env/static/public";
 import { GoogleSpreadsheet, type GoogleSpreadsheetWorksheet } from "google-spreadsheet";
 import { onMount } from "svelte";
+import { Wave } from 'svelte-loading-spinners';
 
 type ScoreRow = { Pseudo: string; Score: string; Classement: string };
 type Sheet = {
@@ -13,6 +14,7 @@ let title = $state("");
 // biome-ignore lint/style/useConst: used in widget
 let activeSheet = $state(0);
 const sheets: Sheet[] = $state([]);
+let isLoading = $state(true);
 
 onMount(async () => {
   const doc = new GoogleSpreadsheet(PUBLIC_GOOGLE_SHEET_LAN_SOLO, {
@@ -27,10 +29,15 @@ onMount(async () => {
 		  	rows: (await sheet.getRows<ScoreRow>()).map((e) => e.toObject()),
 	  });
   }
+  isLoading = false;
 });
 
 $inspect(sheets);
 </script>
+
+{#if isLoading}
+	<Wave size="60" color="#FF3E00" unit="px" />
+{:else}
 
 {title}
 {#each sheets as sheet, i}
@@ -55,4 +62,6 @@ $inspect(sheets);
 		{/each}
 		</tbody>
 	</table>
+{/if}
+
 {/if}
