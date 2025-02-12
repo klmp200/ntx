@@ -8,6 +8,7 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
+  	paths: { base: process.env.VITE_BASE_PATH ?? "" },
     adapter: adapter({
       pages: "build",
       assets: "build",
