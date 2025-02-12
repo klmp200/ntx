@@ -23,6 +23,14 @@ jobs:
       - name: build
         env:
          BASE_PATH: '/${{ github.event.repository.name }}'
+         VITE_BASE_PATH: ${{ secrets.VITE_BASE_PATH }}
+         PUBLIC_GOOGLE_CALENDAR_API_KEY: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_API_KEY }}
+         PUBLIC_GOOGLE_CALENDAR_EVENTS: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_EVENTS }}
+         PUBLIC_GOOGLE_CALENDAR_LAN: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_LAN }}
+         PUBLIC_GOOGLE_CALENDAR_CONVENTIONS: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_CONVENTIONS }}
+         PUBLIC_GOOGLE_CALENDAR_TWITCH: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_TWITCH }}
+         PUBLIC_GOOGLE_SHEET_API_KEY: ${{ secrets.PUBLIC_GOOGLE_SHEET_API_KEY }}
+         PUBLIC_GOOGLE_SHEET_LAN_SOLO: ${{ secrets.PUBLIC_GOOGLE_SHEET_LAN_SOLO }}
         run: cp .env.example .env && npm run build
 
       - name: Upload Artifacts
