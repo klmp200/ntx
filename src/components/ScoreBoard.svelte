@@ -1,9 +1,11 @@
 <script lang="ts">
 import { PUBLIC_GOOGLE_SHEET_API_KEY, PUBLIC_GOOGLE_SHEET_LAN_SOLO } from "$env/static/public";
+import { GoogleSheetConfig } from "../lib/config"
 import { GoogleSpreadsheet, type GoogleSpreadsheetWorksheet } from "google-spreadsheet";
 import { onMount } from "svelte";
 import { Wave } from 'svelte-loading-spinners';
 
+const { board } = $props<{ board: string }>();
 type ScoreRow = { Pseudo: string; Score: string; Classement: string };
 type Sheet = {
 	title: string;
@@ -17,8 +19,8 @@ const sheets: Sheet[] = $state([]);
 let isLoading = $state(true);
 
 onMount(async () => {
-  const doc = new GoogleSpreadsheet(PUBLIC_GOOGLE_SHEET_LAN_SOLO, {
-    apiKey: PUBLIC_GOOGLE_SHEET_API_KEY,
+  const doc = new GoogleSpreadsheet(board, {
+    apiKey: GoogleSheetConfig.API_KEY,
   });
 
   await doc.loadInfo();
