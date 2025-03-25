@@ -3,7 +3,7 @@ import { PUBLIC_GOOGLE_SHEET_API_KEY, PUBLIC_GOOGLE_SHEET_LAN_SOLO } from "$env/
 import { GoogleSheetConfig } from "../lib/config"
 import { GoogleSpreadsheet, type GoogleSpreadsheetWorksheet } from "google-spreadsheet";
 import { onMount } from "svelte";
-import { Wave } from 'svelte-loading-spinners';
+import { Chasing } from 'svelte-loading-spinners';
 
 const { board } = $props<{ board: string }>();
 type ScoreRow = { Pseudo: string; Score: string; Classement: string };
@@ -38,7 +38,7 @@ $inspect(sheets);
 </script>
 
 {#if isLoading}
-	<Wave size="60" color="#FF3E00" unit="px" />
+	<Chasing size="60" color="#6c00eb" unit="px" />
 {:else}
 
 {title}

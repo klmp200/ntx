@@ -9,7 +9,7 @@
     <h1>NTX Events</h1>
 
     <div class="col-md-9">
-      <section>
+<!--       <section>
         <h2>Instagram</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -18,7 +18,7 @@
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </section>
-
+ -->
       <section>
         <h2>Événements</h2>
         
