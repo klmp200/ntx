@@ -5,3 +5,5 @@
 
 <h2>Scores</h2>
 <ScoreBoard board={GoogleSheetConfig.BOARDS.SOLO}/>
+<br>
+<ScoreBoard board={GoogleSheetConfig.BOARDS.MULTI}/>

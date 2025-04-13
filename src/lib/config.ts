@@ -6,6 +6,7 @@ import {
   PUBLIC_GOOGLE_CALENDAR_TWITCH,
 	PUBLIC_GOOGLE_SHEET_API_KEY,
 	PUBLIC_GOOGLE_SHEET_LAN_SOLO,
+	PUBLIC_GOOGLE_SHEET_LAN_MULTI,
 } from "$env/static/public";
 
 export const GoogleCalendarConfig = {
@@ -22,5 +23,6 @@ export const GoogleSheetConfig = {
   API_KEY: PUBLIC_GOOGLE_SHEET_API_KEY ?? "UNDEFINED",
   BOARDS: {
   	SOLO: PUBLIC_GOOGLE_SHEET_LAN_SOLO ?? "",
+  	MULTI: PUBLIC_GOOGLE_SHEET_LAN_MULTI ?? "",
   },
 }

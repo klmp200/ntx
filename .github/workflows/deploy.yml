@@ -31,6 +31,7 @@ jobs:
          PUBLIC_GOOGLE_CALENDAR_TWITCH: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_TWITCH }}
          PUBLIC_GOOGLE_SHEET_API_KEY: ${{ secrets.PUBLIC_GOOGLE_SHEET_API_KEY }}
          PUBLIC_GOOGLE_SHEET_LAN_SOLO: ${{ secrets.PUBLIC_GOOGLE_SHEET_LAN_SOLO }}
+         PUBLIC_GOOGLE_SHEET_LAN_MULTI: ${{ secrets.PUBLIC_GOOGLE_SHEET_LAN_MULTI }}
         run: cp .env.example .env && npm run build
 
       - name: Upload Artifacts
