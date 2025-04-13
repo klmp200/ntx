@@ -6,7 +6,7 @@
 <div class="container">
 
   <div class="row">
-    <h1>NTX Events</h1>
+    <h1>NTX Event</h1>
 
     <div class="col-md-9">
 <!--       <section>
